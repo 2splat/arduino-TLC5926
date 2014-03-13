@@ -1,6 +1,6 @@
 /*
 
- Test n chained Dandelions.
+ Test n chained TLC5926 shift-registers.
  
  Set the test
  
@@ -63,7 +63,7 @@ void loop() {
     tlc.delay(500);
     break;
 
-    // SDO test, only 1 dandelion -- Check the serial monitor to confirm
+    // SDO test, only 1 shift-register -- Check the serial monitor to confirm
     // Blinks while reading the SDO
   case 5:
     {

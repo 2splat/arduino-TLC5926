@@ -26,7 +26,7 @@ Supports 2-4 signal lines:
         better crude-pwm
         could do no-flicker
     Master-Power/better-pwm (OE) -- SDI + CLK + LE + /OE
-        can turn the whole Dandelion chain on/off with one bit
+        can turn the whole shift-register chain on/off with one bit
         brightness control
     Diagnostics
         can read diagnostics -- not implemented yet

@@ -26,13 +26,15 @@
         * can turn the whole shift-register chain on/off with one bit
         * brightness control
     * Diagnostics
-        * can read diagnostics -- not implemented yet
+        * can read diagnostics
 
     ## Hardware setup
 
-    If you put a pull-up on LE to CLK, then you can reduce the number of wires needed. However, you can get flickering if you do this. If you make this pull-up high value, like 100k, then you can choose if you want to use LE or not (the Arduino signal will override the LE pull-up). 
+    These shift-registers let you set/limit the current with 1 resistor ("VEXT"). Check the curve in the datasheet, but you could use a trimpot to make it adjustable. You could "pull" VEXT to GND without any resistor, and that sets the current to.... Leaving it disconnected sets it to ....
 
-    If you put a pull-down on /OE to GND, then you can reduce the number of wires needed. If you make this pull-up high value, like 100k, then you can choose if you want to use /OE or not (the Arduino signal will override the /OE pull-down).
+    If you put a pull-up on LE to CLK, then you can reduce the number of wires needed. However, you can get flickering if you do this. If you make this pull-up value high, like 100k, then you can choose if you want to use LE or not (the Arduino signal will override the LE pull-up). 
+
+    If you put a pull-down on /OE to GND, then you can reduce the number of wires needed. If you make this pull-up value high, like 100k, then you can choose if you want to use /OE or not (the Arduino signal will override the /OE pull-down).
 
     So, if you do both of the above, you only need SDI + CLK to drive the TLC5926 (and power and ground).
 
@@ -50,11 +52,10 @@
         * 2-Wire should work.
         * dim-flickerings probably won't be noticeable.
     * Are you rapidly changing the pattern?
-        * To avoid dim-flickering use the LE line: No Flicker setup (or Master-Power).
+        * To avoid dim-flickering use the LE line: "No Flicker" setup (or "Master-Power").
     * Are you controlling something that takes a PWM input (like a servo)?
-        * It might work with the brightness feature, experiment.
-        * But, remember, all HIGH outputs are controlled at once!
-        * Someone should scope this and see how clean the outputs are.
+        * It might work with the global-brightness feature, experiment. But, remember, all HIGH outputs are controlled at once! Someone should scope this and see how clean the outputs are.
+        * You could carefully do this "manually" by shifting patterns into the shift-register. You probably want to use LE.
         * Look into the Shift-PWM library: <http://www.elcojacobs.com/shiftpwm>
 
     ### Stupid Tricks

@@ -23,6 +23,9 @@ README.md : libraries/TLC5926/TLC5926.cpp
 	awk 'FNR==2,/*\// {if ($$0 != "*/") {print}}' $< | sed 's/^    //' > $@
 	echo >> $@
 	awk '/\/* Use:/,/*\// {if ($$0 == "*/") {next}; sub(/^\/\*/, ""); print}' $< | sed 's/^ //' >> $@
+ifneq ($(shell which markdown),)
+	markdown README.md > README.html
+endif
 
 arduino_TLC5926.zip : $(lib_files)
 	rm $@ 2>/dev/null
